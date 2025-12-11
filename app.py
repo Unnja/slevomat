@@ -16,8 +16,8 @@ st.markdown("""
     border-radius: 20px;
     text-align: center;
 ">
-    <h1 style='color:white; font-size:8vw; text-shadow:2px 2px 10px black;'>🎁 Vánoční dárek pro tebe, lásko ❤️</h1>
-    <p style='color:white; font-size:4vw; text-shadow:1px 1px 6px black;'>Klikni na tlačítko a rozbal svůj voucher 🎄✨</p>
+    <h1 style='color:white; font-size:8vw; text-shadow:2px 2px 10px black;'>🎁 Tady máš svůj vánoční dárek, beruško ❤️</h1>
+    <p style='color:white; font-size:4vw; text-shadow:1px 1px 6px black;'>Klikni a rozbal si ho! 🎄✨</p>
     <a href="https://drive.google.com/file/d/1Dxi3R6fMb0r8k4E2TIpyJ6Y786f0ntpJ/view?usp=drive_link" target="_blank">
         <button style="
             background: linear-gradient(135deg, #ff4d4d, #ff9999);
