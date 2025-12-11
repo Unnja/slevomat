@@ -22,10 +22,10 @@ st.markdown(page_bg, unsafe_allow_html=True)
 # ---- HEADER ----
 st.markdown("""
 <h1 style='text-align:center; color:#fff; text-shadow: 0px 0px 15px black; font-size:60px;'>
-🎁 Vánoční dárek pro tebe, lásko ❤️
+🎁 Tvůj vánoční dárek, bobku ❤️
 </h1>
 <p style='text-align:center; color:white; font-size:22px; text-shadow: 0px 0px 8px black;'>
-Doufám, že ti udělá radost. Miluju tě. 🎄✨
+Doufám, že ti udělá radost. Miluju tě. ❤️🎄
 </p>
 """, unsafe_allow_html=True)
 
