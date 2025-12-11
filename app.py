@@ -14,14 +14,9 @@ with open(PDF_FILE, "rb") as f:
     pdf_bytes = f.read()
 base64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
 
-# ---- SESSION STATE pro "rozbalený dárek" ----
+# ---- SESSION STATE ----
 if "opened" not in st.session_state:
     st.session_state.opened = False
-
-# ---- FUNKCE PRO OTEVŘENÍ DÁRKU ----
-def open_gift():
-    st.session_state.opened = True
-    st.experimental_rerun()
 
 # ---- HLAVNÍ STRÁNKA ----
 if not st.session_state.opened:
@@ -43,6 +38,7 @@ if not st.session_state.opened:
     .center-btn {
         display: flex;
         justify-content: center;
+        margin-top: 20px;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -50,9 +46,8 @@ if not st.session_state.opened:
     st.markdown("<h1>🎁 Vánoční dárek pro tebe, lásko ❤️</h1>", unsafe_allow_html=True)
     st.markdown("<p>Klikni na tlačítko a rozbal svůj voucher 🎄✨</p>", unsafe_allow_html=True)
     
-    st.markdown("<div class='center-btn'>", unsafe_allow_html=True)
-    st.button("🎁 Rozbalit dárek", on_click=open_gift)
-    st.markdown("</div>", unsafe_allow_html=True)
+    if st.button("🎁 Rozbalit dárek"):
+        st.session_state.opened = True
 
 # ---- STRÁNKA S PDF ----
 else:
