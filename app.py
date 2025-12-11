@@ -1,16 +1,8 @@
 import streamlit as st
-import qrcode
 from io import BytesIO
 import base64
 
 PDF_FILE = "voucher.pdf"
-
-# ---- QR CODE ----
-def generate_qr(url: str):
-    qr = qrcode.make(url)
-    buf = BytesIO()
-    qr.save(buf, format="PNG")
-    return buf.getvalue()
 
 # ---- PAGE CONFIG ----
 st.set_page_config(page_title="Vánoční překvapení 🎄❤️", page_icon="🎁", layout="wide")
@@ -29,25 +21,13 @@ st.markdown(page_bg, unsafe_allow_html=True)
 
 # ---- HEADER ----
 st.markdown("""
-<h1 style='text-align:center; color:#fff; text-shadow: 0px 0px 15px black; font-size: 60px;'>
+<h1 style='text-align:center; color:#fff; text-shadow: 0px 0px 15px black; font-size:60px;'>
 🎁 Vánoční dárek pro tebe, lásko ❤️
 </h1>
 <p style='text-align:center; color:white; font-size:22px; text-shadow: 0px 0px 8px black;'>
 Doufám, že ti udělá radost. Miluju tě. 🎄✨
 </p>
 """, unsafe_allow_html=True)
-
-st.write("")  
-st.write("---")
-
-# ---- URL PRO QR (po deployi změň!) ----
-target_url = "https://TVOJE-URL.streamlit.app"
-
-qr = generate_qr(target_url)
-
-col1, col2, col3 = st.columns([1,1,1])
-with col2:
-    st.image(qr, width=260, caption="Naskenuj mě 🎄❤️", use_column_width=False)
 
 st.write("---")
 
