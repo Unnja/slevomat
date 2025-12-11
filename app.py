@@ -9,7 +9,7 @@ st.set_page_config(
 # ---- HLAVNÍ CONTAINER S POZADÍM ----
 st.markdown("""
 <div style="
-    background-image: url('https://i.imgur.com/rU7bp6W.jpg');
+    background-image: url('https://fr.web.img3.acsta.net/r_1280_720/medias/nmedia/18/65/40/92/18860985.jpg');
     background-size: cover;
     background-position: center;
     padding: 100px 20px;
