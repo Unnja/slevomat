@@ -5,94 +5,60 @@ import base64
 PDF_FILE = "voucher.pdf"
 
 # ---- PAGE CONFIG ----
-st.set_page_config(
-    page_title="Vánoční překvapení 🎄❤️",
-    page_icon="🎁",
-    layout="centered"
-)
-
-# ---- CHRISTMAS BACKGROUND ----
-st.markdown("""
-<style>
-body {
-    background-image: url('https://i.imgur.com/rU7bp6W.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-}
-
-/* Nadpisy a text */
-h1, h2, p {
-    text-align: center;
-    text-shadow: 2px 2px 8px black;
-    color: white;
-}
-
-/* Responzivní text */
-h1 { font-size: 8vw; }
-h2 { font-size: 6vw; }
-p  { font-size: 4vw; }
-
-/* PDF rámeček */
-.pdf-card {
-    background: rgba(255, 0, 0, 0.85);
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
-    border: 5px solid gold;
-}
-
-/* PDF embed responsivní */
-.embed-container {
-    position: relative;
-    padding-bottom: 125%;
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-}
-.embed-container embed {
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-}
-</style>
-""", unsafe_allow_html=True)
-
-# ---- HEADER ----
-st.markdown("""
-<h1>🎁 Vánoční dárek pro tebe, lásko ❤️</h1>
-<p>Doufám, že ti udělá radost. Miluju tě. 🎄✨</p>
-""", unsafe_allow_html=True)
-
-st.write("---")
+st.set_page_config(page_title="Vánoční překvapení 🎄❤️",
+                   page_icon="🎁",
+                   layout="centered")
 
 # ---- LOAD PDF ----
 with open(PDF_FILE, "rb") as f:
     pdf_bytes = f.read()
 base64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
 
-# ---- PDF CARD ----
-st.markdown("""
-<div class="pdf-card">
-<h2>🎄 Tvůj vánoční voucher 🎄</h2>
-<div class="embed-container">
-""", unsafe_allow_html=True)
+# ---- SESSION STATE pro "rozbalený dárek" ----
+if "opened" not in st.session_state:
+    st.session_state.opened = False
 
-st.markdown(
-    f'<embed src="data:application/pdf;base64,{base64_pdf}" type="application/pdf">',
-    unsafe_allow_html=True
-)
+# ---- FUNKCE PRO OTEVŘENÍ DÁRKU ----
+def open_gift():
+    st.session_state.opened = True
+    st.experimental_rerun()
 
-st.markdown("</div></div>", unsafe_allow_html=True)
+# ---- HLAVNÍ STRÁNKA ----
+if not st.session_state.opened:
+    st.markdown("""
+    <style>
+    body {
+        background-image: url('https://i.imgur.com/rU7bp6W.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
+    h1, p {
+        text-align: center;
+        text-shadow: 2px 2px 8px black;
+        color: white;
+    }
+    h1 { font-size: 8vw; }
+    p  { font-size: 4vw; }
+    .center-btn {
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-# ---- DOWNLOAD BUTTON ----
-st.download_button("📥 Stáhnout voucher", data=pdf_bytes, file_name="voucher.pdf")
+    st.markdown("<h1>🎁 Vánoční dárek pro tebe, lásko ❤️</h1>", unsafe_allow_html=True)
+    st.markdown("<p>Klikni na tlačítko a rozbal svůj voucher 🎄✨</p>", unsafe_allow_html=True)
+    
+    st.markdown("<div class='center-btn'>", unsafe_allow_html=True)
+    st.button("🎁 Rozbalit dárek", on_click=open_gift)
+    st.markdown("</div>", unsafe_allow_html=True)
 
-# ---- FOOTER ----
-st.markdown("""
-<p style='margin-top:30px; font-size:4vw; color:white; text-shadow:2px 2px 6px black;'>
-🎅 Veselé Vánoce, moje lásko ❤️
-</p>
-""", unsafe_allow_html=True)
+# ---- STRÁNKA S PDF ----
+else:
+    st.markdown("<h2 style='text-align:center; color:#b30000;'>🎄 Tvůj vánoční voucher 🎄</h2>", unsafe_allow_html=True)
+    st.markdown(
+        f'<embed src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf">',
+        unsafe_allow_html=True
+    )
+    st.download_button("📥 Stáhnout voucher", data=pdf_bytes, file_name="voucher.pdf")
