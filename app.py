@@ -17,7 +17,7 @@ st.title("🎁 Vánoční dárek pro tebe ❤️")
 st.write("Moje lásko, tady máš svůj speciální voucher.")
 
 # URL svého projektu doplníš až PO deployi
-target_url = "https://your-name-your-repo.streamlit.app"
+target_url = "https://slevomat-n2xtej4n9xhgxbk95xqq8n.streamlit.app/#vanocni-darek-pro-tebe"
 
 qr_img = generate_qr(target_url)
 st.image(qr_img, width=250, caption="Naskenuj mě ❤️")
