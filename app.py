@@ -1,11 +1,11 @@
 import streamlit as st
 
-PDF_FILE = "voucher.pdf"
-
 # ---- PAGE CONFIG ----
-st.set_page_config(page_title="Vánoční překvapení 🎄❤️",
-                   page_icon="🎁",
-                   layout="centered")
+st.set_page_config(
+    page_title="Vánoční překvapení 🎄❤️",
+    page_icon="🎁",
+    layout="centered"
+)
 
 # ---- HLAVNÍ STRÁNKA ----
 st.markdown("""
@@ -17,10 +17,12 @@ Klikni na tlačítko a rozbal svůj voucher 🎄✨
 </p>
 """, unsafe_allow_html=True)
 
-# ---- ODKAZ NA PDF ----
+# ---- TLAČÍTKO OTEVŘÍT V NOVÉ ZÁLOŽCE ----
+google_drive_link = "https://drive.google.com/file/d/1Dxi3R6fMb0r8k4E2TIpyJ6Y786f0ntpJ/view?usp=drive_link"
+
 st.markdown(f"""
 <div style="text-align:center; margin-top:20px;">
-    <a href="{PDF_FILE}" target="_blank">
+    <a href="{google_drive_link}" target="_blank">
         <button style="
             background-color:#b30000;
             color:white;
@@ -33,8 +35,3 @@ st.markdown(f"""
     </a>
 </div>
 """, unsafe_allow_html=True)
-
-# ---- VOLITELNÉ STAHOVÁNÍ ----
-with open(PDF_FILE, "rb") as f:
-    pdf_bytes = f.read()
-st.download_button("📥 Stáhnout voucher", data=pdf_bytes, file_name="voucher.pdf")
