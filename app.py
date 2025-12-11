@@ -5,32 +5,86 @@ import base64
 
 PDF_FILE = "voucher.pdf"
 
+# ---- QR CODE ----
 def generate_qr(url: str):
     qr = qrcode.make(url)
     buf = BytesIO()
     qr.save(buf, format="PNG")
     return buf.getvalue()
 
-st.set_page_config(page_title="Vánoční dárek ❤️", page_icon="🎁")
+# ---- PAGE CONFIG ----
+st.set_page_config(page_title="Vánoční překvapení 🎄❤️", page_icon="🎁", layout="wide")
 
-st.title("🎁 Vánoční dárek pro tebe ❤️")
-st.write("Moje lásko, tady máš svůj speciální voucher.")
+# ---- CHRISTMAS BACKGROUND ----
+page_bg = """
+<style>
+body {
+    background-image: url('https://i.imgur.com/rU7bp6W.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+</style>
+"""
+st.markdown(page_bg, unsafe_allow_html=True)
 
-# URL svého projektu doplníš až PO deployi
-target_url = "https://slevomat-n2xtej4n9xhgxbk95xqq8n.streamlit.app/#vanocni-darek-pro-tebe"
+# ---- HEADER ----
+st.markdown("""
+<h1 style='text-align:center; color:#fff; text-shadow: 0px 0px 15px black; font-size: 60px;'>
+🎁 Vánoční dárek pro tebe, lásko ❤️
+</h1>
+<p style='text-align:center; color:white; font-size:22px; text-shadow: 0px 0px 8px black;'>
+Doufám, že ti udělá radost. Miluju tě. 🎄✨
+</p>
+""", unsafe_allow_html=True)
 
-qr_img = generate_qr(target_url)
-st.image(qr_img, width=250, caption="Naskenuj mě ❤️")
+st.write("")  
+st.write("---")
+
+# ---- URL PRO QR (po deployi změň!) ----
+target_url = "https://TVOJE-URL.streamlit.app"
+
+qr = generate_qr(target_url)
+
+col1, col2, col3 = st.columns([1,1,1])
+with col2:
+    st.image(qr, width=260, caption="Naskenuj mě 🎄❤️", use_column_width=False)
 
 st.write("---")
 
-# Načtení PDF
+# ---- LOAD PDF ----
 with open(PDF_FILE, "rb") as f:
     pdf_bytes = f.read()
 
-# Zobrazení PDF ve stránce
-base64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')
-pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="900" type="application/pdf">'
-st.markdown(pdf_display, unsafe_allow_html=True)
+base64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
 
+# ---- CHRISTMAS CARD AROUND PDF ----
+st.markdown("""
+<div style="
+    background: rgba(255,255,255,0.85);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+">
+<h2 style='text-align:center; color:#b30000;'>
+🎄 Tvůj vánoční voucher 🎄
+</h2>
+""", unsafe_allow_html=True)
+
+st.markdown(
+    f'<embed src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf">',
+    unsafe_allow_html=True
+)
+
+st.markdown("""
+</div>
+""", unsafe_allow_html=True)
+
+# ---- DOWNLOAD ----
 st.download_button("📥 Stáhnout voucher", data=pdf_bytes, file_name="voucher.pdf")
+
+# ---- FOOTER ----
+st.markdown("""
+<p style='text-align:center; margin-top:40px; color:white; text-shadow: 0px 0px 8px black; font-size:18px;'>
+🎅 Veselé Vánoce, moje lásko ❤️
+</p>
+""", unsafe_allow_html=True)
