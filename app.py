@@ -9,7 +9,7 @@ st.set_page_config(
 # ---- HLAVNÍ CONTAINER S POZADÍM ----
 st.markdown("""
 <div style="
-    background-image: url('https://media.discordapp.net/attachments/1448757190260429025/1450163615507153087/IMG_7797.jpg?ex=6941899c&is=6940381c&hm=22cc6f4fe2d23fa7dbe673cf5b664b96387c4a11604b625b23f2bb25dfd23cd7&=&format=webp&width=473&height=648');
+    background-image: url('https://github.com/Unnja/slevomat/blob/main/IMG_7797.jpg?raw=true');
     background-size: cover;
     background-position: center;
     padding: 100px 20px;
