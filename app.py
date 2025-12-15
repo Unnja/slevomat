@@ -7,7 +7,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# 1. CSS STYLY (Zde definujeme vzhled - bez f-stringu, aby se nehádaly závorky)
+# 1. CSS STYLY (Definujeme zvlášť, bez f-stringu, aby se nehádaly závorky)
 css_styles = """
 <style>
     .stApp {
@@ -20,6 +20,7 @@ css_styles = """
         pointer-events: none;
         color: white;
         animation: fall linear infinite;
+        text-shadow: 0 0 5px white;
     }
     @keyframes fall {
         0% { transform: translateY(-10vh); }
@@ -33,7 +34,7 @@ css_styles = """
         padding: 80px 20px;
         border-radius: 20px;
         text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.6);
         color: white;
         margin-top: 20px;
     }
@@ -48,6 +49,7 @@ css_styles = """
         text-decoration: none;
         display: inline-block;
         margin-top: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         transition: transform 0.2s;
     }
     .gift-btn:hover {
@@ -56,7 +58,7 @@ css_styles = """
 </style>
 """
 
-# 2. GENERÁTOR SNĚHU (Vytvoříme HTML pro 50 vloček)
+# 2. GENERÁTOR SNĚHU (Python vyrobí HTML pro 50 vloček)
 snow_html = ""
 for _ in range(50):
     left = random.randint(0, 100)
@@ -65,7 +67,7 @@ for _ in range(50):
     size = random.uniform(10, 25)
     alpha = random.uniform(0.3, 0.8)
     
-    # Zde používáme f-string, ale protože jsme oddělili CSS, je to bezpečné
+    # Tady používáme f-string pro vložení čísel do HTML
     snow_html += f"""
     <div class="snowflake" style="
         left: {left}vw;
@@ -87,5 +89,5 @@ content_html = """
 </div>
 """
 
-# 4. SPOJENÍ A VYKRESLENÍ (Tohle je ten klíčový moment)
+# 4. FINÁLNÍ VYKRESLENÍ (Spojíme všechno dohromady)
 st.markdown(css_styles + snow_html + content_html, unsafe_allow_html=True)
