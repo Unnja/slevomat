@@ -45,7 +45,7 @@ st.markdown("""
 </style>
 
 <div class="gift-container">
-<h1 style='margin:0; font-size: 3rem; text-shadow:2px 2px 10px black; line-height: 1.2;'>🎁 Tady máš svůj vánoční dárek, bobku! ❤️</h1>
+<h1 style='margin:0; font-size: 3rem; text-shadow:2px 2px 10px black; line-height: 1.2;'>🎁 Tady máš svůj vánoční dárek, bobku. ❤️</h1>
 <p style='font-size: 1.5rem; text-shadow:1px 1px 6px black; margin: 30px 0;'>Klikni a rozbal si ho! 🎄✨</p>
 <a href="https://drive.google.com/file/d/1Dxi3R6fMb0r8k4E2TIpyJ6Y786f0ntpJ/view?usp=drive_link" target="_blank" style="text-decoration:none;">
 <button class="gift-btn">🎁 Rozbalit dárek</button>
