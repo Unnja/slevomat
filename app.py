@@ -1,3 +1,28 @@
+import streamlit as st
+import base64
+from pathlib import Path
+
+# ---------- CONFIG ----------
+st.set_page_config(
+    page_title="Vánoční překvapení 🎄❤️",
+    page_icon="🎁",
+    layout="centered"
+)
+
+# ---------- IMAGE LOAD ----------
+BASE_DIR = Path(__file__).parent
+img_path = BASE_DIR / "IMG_7797.jpg"
+
+def img_to_base64(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+img_base64 = img_to_base64(img_path)
+
+# ---------- EFFECT ----------
+st.snow()
+
+# ---------- UI ----------
 st.markdown(f"""
 <style>
 .stApp {{
