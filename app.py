@@ -1,22 +1,12 @@
-import streamlit as st
-
-st.set_page_config(
-    page_title="Vánoční překvapení 🎄❤️",
-    page_icon="🎁",
-    layout="centered"
-)
-
-# 1. Klasické spolehlivé sněžení
-st.snow()
-
-# 2. CSS a HTML (vše nalepené vlevo, aby to Streamlit nerozbil)
-st.markdown("""
+st.markdown(f"""
 <style>
-.stApp {
+.stApp {{
     background-color: #0e0e0e;
-}
-.gift-container {
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://github.com/Unnja/slevomat/blob/main/IMG_7797.jpg?raw=true');
+}}
+.gift-container {{
+    background-image:
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url("data:image/jpeg;base64,{img_base64}");
     background-size: cover;
     background-position: center;
     padding: 100px 20px;
@@ -24,8 +14,8 @@ st.markdown("""
     text-align: center;
     box-shadow: 0 4px 20px rgba(0,0,0,0.6);
     color: white;
-}
-.gift-btn {
+}}
+.gift-btn {{
     background: linear-gradient(135deg, #ff4d4d, #ff9999);
     color: white;
     border: none;
@@ -38,16 +28,20 @@ st.markdown("""
     text-decoration: none;
     display: inline-block;
     margin-top: 20px;
-}
-.gift-btn:hover {
+}}
+.gift-btn:hover {{
     transform: scale(1.05);
-}
+}}
 </style>
 
 <div class="gift-container">
-<h1 style='margin:0; font-size: 3rem; text-shadow:2px 2px 10px black; line-height: 1.2;'>🎁 Tady máš svůj vánoční dárek, bobku. ❤️</h1>
-<p style='font-size: 1.5rem; text-shadow:1px 1px 6px black; margin: 30px 0;'>Klikni a rozbal si ho! 🎄✨</p>
-<a href="https://drive.google.com/file/d/1Dxi3R6fMb0r8k4E2TIpyJ6Y786f0ntpJ/view?usp=drive_link" target="_blank" style="text-decoration:none;">
+<h1 style='margin:0; font-size: 3rem; text-shadow:2px 2px 10px black; line-height: 1.2;'>
+🎁 Tady máš svůj vánoční dárek, bobku. ❤️
+</h1>
+<p style='font-size: 1.5rem; text-shadow:1px 1px 6px black; margin: 30px 0;'>
+Klikni a rozbal si ho! 🎄✨
+</p>
+<a href="https://drive.google.com/file/d/1Dxi3R6fMb0r8k4E2TIpyJ6Y786f0ntpJ/view" target="_blank">
 <button class="gift-btn">🎁 Rozbalit dárek</button>
 </a>
 </div>
